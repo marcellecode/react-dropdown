@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [dropdownState, setDropdownState] = useState(false);
+
+  const handleButtonClick = () => {
+    setDropdownState(!dropdownState);
+  };
+
+  //TODO Corrigir para fechar o dropdown quando o usuário clicar fora
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //       setDropdownState(false);
+      
+  //   };
+  //   return () => {
+  //     window.removeEventListener("mousemove", handleClickOutside);
+  //   };
+  // });
+
+  // console.log(dropdownState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <button type="button" onClick={handleButtonClick}>
+        open
+      </button>
+      {dropdownState && (
+        <div className="dropdown">
+          <div className="headerDropdown">Header dropdown</div>
+          <div className="dropdownList">
+            <button className="dropdownListItem">Item 1</button>
+            <button className="dropdownListItem">Item 2</button>
+            <button className="dropdownListItem">Item 3</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
